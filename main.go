@@ -1,8 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"acp10/configs"
+	"acp10/routes"
+)
 
 func main() {
-	fmt.Println("Hello World 2")
-
+	configs.InitDB()
+	e := routes.New()
+	e.Start(":8000")
 }
