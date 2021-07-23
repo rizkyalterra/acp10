@@ -3,6 +3,7 @@ package controllers
 import (
 	"acp10/configs"
 	"acp10/lib/database"
+	"acp10/middlewares"
 	"acp10/models/news"
 	"net/http"
 
@@ -44,5 +45,18 @@ func GetNewsControllers(c echo.Context) error {
 		http.StatusOK,
 		"Success Get Data News",
 		newsData,
+	))
+}
+
+func DetailNewsControllers(c echo.Context) error {
+
+	// newsId := c.Param("newsId")
+
+	userId := middlewares.GetUserIdFromJWT(c)
+
+	return c.JSON(http.StatusOK, BaseResponse(
+		http.StatusOK,
+		"Success Get Data UserId",
+		userId,
 	))
 }

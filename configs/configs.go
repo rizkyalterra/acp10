@@ -2,6 +2,7 @@ package configs
 
 import (
 	"acp10/models/news"
+	"acp10/models/users"
 	"fmt"
 
 	"gorm.io/driver/mysql"
@@ -48,5 +49,5 @@ func InitDB() {
 }
 
 func Migration() {
-	DB.AutoMigrate(&news.News{})
+	DB.AutoMigrate(&news.News{}, &users.User{})
 }
