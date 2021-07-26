@@ -10,6 +10,14 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+func Addition(a, b int) int {
+	result := a + b
+	if result < 0 {
+		result = 0
+	}
+	return result
+}
+
 func CreateNewsControllers(c echo.Context) error {
 
 	var newsCreate news.NewsCreate
