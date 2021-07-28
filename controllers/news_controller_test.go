@@ -51,6 +51,7 @@ func TestGetNewsControllers(t *testing.T) {
 			assert.Error(t, err, "Failed convert body to object")
 		}
 		assert.Equal(t, http.StatusOK, baseResponse.Code)
-		assert.Equal(t, 2, len(baseResponse.Data))
+		assert.Equal(t, 1, len(baseResponse.Data))
 	}
+
 }
