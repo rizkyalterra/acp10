@@ -9,5 +9,9 @@ func main() {
 	configs.InitDB()
 	e := routes.New()
 	e.Start(":8000")
+<<<<<<< HEAD
 	// A
+=======
+	// List
+>>>>>>> origin/list
 }
