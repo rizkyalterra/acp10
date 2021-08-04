@@ -1,0 +1,47 @@
+name: Build and Publish Docker Image
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        go-version: [1.12.x, 1.13.x, 1.14.x]
+        platform: [ubuntu-latest, macos-latest, windows-latest]
+    
+    runs-on: ${{ matrix.platform }}
+
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ matrix.go-version }}
+    
+    - uses: actions/checkout@v2
+
+    - name: Test
+      run: go test ./...
+
+  build-and-publish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Docker Image
+      run: docker build . --tag app:$(date +%s)
+
+    - name: Login to DockerHub
+      uses: docker/login-action@v1 
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: 123ABC4d.
+
+    - name: Build and push
+      id: docker_build
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: moryku/app:latest

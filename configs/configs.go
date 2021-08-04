@@ -2,6 +2,7 @@ package configs
 
 import (
 	"acp10/models/news"
+	"acp10/models/users"
 	"fmt"
 
 	"gorm.io/driver/mysql"
@@ -48,5 +49,42 @@ func InitDB() {
 }
 
 func Migration() {
+	DB.AutoMigrate(&news.News{}, &users.User{})
+}
+
+/// TEST =========
+
+func InitConfigDBTest() ConfigDB {
+	var configDB = ConfigDB{
+		DB_Username: "root",
+		DB_Password: "123ABC4d.",
+		DB_Host:     "127.0.0.1",
+		DB_Port:     "3306",
+		DB_Database: "acp10_test",
+	}
+	return configDB
+}
+
+func InitDBTest() {
+	configDB := InitConfigDBTest()
+
+	dsn := fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?charset=utf8mb4&parseTime=True&loc=Local",
+		configDB.DB_Username,
+		configDB.DB_Password,
+		configDB.DB_Host,
+		configDB.DB_Port,
+		configDB.DB_Database)
+
+	var error error
+	DB, error = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	if error != nil {
+		panic("Database failed connection : " + error.Error())
+	}
+	MigrationTest()
+}
+
+func MigrationTest() {
+
+	DB.Migrator().DropTable(&news.News{})
 	DB.AutoMigrate(&news.News{})
 }

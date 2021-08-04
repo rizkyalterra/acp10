@@ -1,0 +1,15 @@
+mode: set
+acp10/controllers/base_controller.go:5.75,7.2 1 1
+acp10/controllers/news_controller.go:13.29,15.16 2 1
+acp10/controllers/news_controller.go:18.2,18.15 1 1
+acp10/controllers/news_controller.go:15.16,17.3 1 1
+acp10/controllers/news_controller.go:21.50,31.16 7 0
+acp10/controllers/news_controller.go:35.2,35.38 1 0
+acp10/controllers/news_controller.go:31.16,33.3 1 0
+acp10/controllers/news_controller.go:38.47,44.16 4 1
+acp10/controllers/news_controller.go:52.2,56.4 1 1
+acp10/controllers/news_controller.go:44.16,50.3 1 0
+acp10/controllers/news_controller.go:59.50,70.2 2 0
+acp10/controllers/user_controller.go:12.44,18.14 4 0
+acp10/controllers/user_controller.go:26.2,41.4 3 0
+acp10/controllers/user_controller.go:18.14,24.3 1 0
